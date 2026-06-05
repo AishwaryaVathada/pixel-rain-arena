@@ -1,17 +1,21 @@
 :root {
   color-scheme: dark;
-  --bg: #070a1c;
-  --panel: rgba(15, 22, 56, 0.82);
-  --panel-strong: rgba(22, 31, 78, 0.94);
-  --ink: #e8fbff;
-  --muted: #8ba5c7;
-  --cyan: #20e3d2;
-  --cyan-soft: rgba(32, 227, 210, 0.18);
-  --gold: #f6d365;
-  --danger: #ff7a9a;
-  --line: rgba(122, 252, 255, 0.18);
-  --shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
-  font-family: "Courier New", "Lucida Console", monospace;
+  --bg: #07140f;
+  --panel: rgba(16, 36, 31, 0.78);
+  --panel-strong: rgba(22, 48, 39, 0.94);
+  --ink: #eef8ed;
+  --muted: #a8c4b7;
+  --pond: #8ecbd1;
+  --pond-soft: rgba(142, 203, 209, 0.18);
+  --leaf: #9cc36b;
+  --moss: #496d45;
+  --violet: #b9aacd;
+  --cream: #f1e6c4;
+  --danger: #f0a4a6;
+  --line: rgba(181, 220, 196, 0.2);
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 * {
@@ -28,9 +32,12 @@ body {
   margin: 0;
   color: var(--ink);
   background:
-    radial-gradient(circle at 15% 12%, rgba(62, 75, 168, 0.42), transparent 34rem),
-    radial-gradient(circle at 90% 0%, rgba(32, 227, 210, 0.2), transparent 26rem),
-    linear-gradient(180deg, #0b102d 0%, var(--bg) 70%);
+    linear-gradient(180deg, rgba(6, 18, 14, 0.18), rgba(6, 18, 14, 0.82)),
+    radial-gradient(circle at 18% 6%, rgba(120, 164, 100, 0.34), transparent 28rem),
+    radial-gradient(circle at 84% 10%, rgba(121, 160, 176, 0.24), transparent 26rem),
+    radial-gradient(circle at 70% 84%, rgba(84, 112, 81, 0.28), transparent 28rem),
+    linear-gradient(180deg, #13271f 0%, var(--bg) 76%);
+  background-attachment: fixed;
 }
 
 body::before {
@@ -38,11 +45,11 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 100% 6px, 10px 100%;
-  mix-blend-mode: screen;
+  background:
+    linear-gradient(115deg, transparent 0 28%, rgba(202, 235, 215, 0.05) 28% 28.35%, transparent 28.35% 100%),
+    linear-gradient(70deg, transparent 0 58%, rgba(146, 184, 157, 0.035) 58% 58.28%, transparent 58.28% 100%);
+  background-size: 180px 180px, 240px 240px;
+  opacity: 0.8;
 }
 
 button,
@@ -51,26 +58,27 @@ input {
 }
 
 button {
-  border: 0;
-  border-radius: 0;
-  color: #06101c;
-  background: var(--cyan);
-  box-shadow: 5px 5px 0 #06101c, 0 0 24px var(--cyan-soft);
+  border: 1px solid rgba(238, 248, 237, 0.18);
+  border-radius: 8px;
+  color: #0c1d16;
+  background: linear-gradient(180deg, #d9edc7, var(--leaf));
+  box-shadow: 0 12px 28px rgba(9, 24, 18, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.34);
   cursor: pointer;
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  padding: 0.78rem 1rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  padding: 0.78rem 1.05rem;
   text-transform: uppercase;
+  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
 }
 
 button:active {
-  transform: translate(3px, 3px);
-  box-shadow: 2px 2px 0 #06101c;
+  transform: translateY(1px);
+  box-shadow: 0 7px 18px rgba(9, 24, 18, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.28);
 }
 
 button.ghost {
   color: var(--ink);
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(238, 248, 237, 0.08);
   box-shadow: inset 0 0 0 1px var(--line);
 }
 
@@ -85,13 +93,15 @@ button.ghost {
   justify-content: space-between;
   gap: 1rem;
   align-items: flex-end;
+  padding: clamp(0.5rem, 1vw, 0.9rem) 0 0.25rem;
 }
 
 .eyebrow {
   margin: 0 0 0.5rem;
-  color: var(--gold);
+  color: var(--cream);
   font-size: 0.82rem;
-  letter-spacing: 0.16em;
+  font-weight: 800;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -102,17 +112,18 @@ p {
 }
 
 h1 {
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.35rem;
   color: var(--ink);
-  font-size: clamp(2.45rem, 9vw, 6.5rem);
-  line-height: 0.86;
-  text-shadow: 4px 4px 0 #16215c, 0 0 28px rgba(32, 227, 210, 0.28);
-  text-transform: uppercase;
+  font-size: clamp(2.35rem, 7.6vw, 6rem);
+  font-weight: 900;
+  line-height: 0.92;
+  text-shadow: 0 8px 34px rgba(8, 18, 14, 0.62), 0 0 26px rgba(142, 203, 209, 0.18);
 }
 
 h2 {
   margin-bottom: 0;
   font-size: 1rem;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
@@ -125,7 +136,10 @@ h2 {
 .instruction-banner {
   margin: 1.25rem 0;
   border: 1px solid var(--line);
-  background: linear-gradient(90deg, rgba(32, 227, 210, 0.18), rgba(246, 211, 101, 0.12));
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, rgba(142, 203, 209, 0.18), rgba(156, 195, 107, 0.15)),
+    rgba(13, 32, 26, 0.62);
   box-shadow: var(--shadow);
   color: var(--ink);
   padding: 0.9rem 1rem;
@@ -145,6 +159,7 @@ h2 {
   background: var(--panel);
   box-shadow: var(--shadow);
   backdrop-filter: blur(16px);
+  border-radius: 8px;
 }
 
 .canvas-panel {
@@ -152,7 +167,7 @@ h2 {
   top: 1rem;
   min-height: 72vh;
   overflow: hidden;
-  padding: 0.65rem;
+  padding: 0.7rem;
 }
 
 .rain-canvas {
@@ -160,8 +175,9 @@ h2 {
   width: 100%;
   height: min(72vh, 760px);
   min-height: 420px;
-  border: 1px solid rgba(32, 227, 210, 0.28);
-  background: #080c23;
+  border: 1px solid rgba(190, 226, 205, 0.26);
+  border-radius: 6px;
+  background: #10241f;
   image-rendering: pixelated;
   touch-action: none;
   user-select: none;
@@ -181,6 +197,9 @@ h2 {
 .hud-card {
   min-height: 118px;
   padding: 0.95rem;
+  background:
+    linear-gradient(180deg, rgba(238, 248, 237, 0.05), rgba(238, 248, 237, 0)),
+    var(--panel);
 }
 
 .hud-card span,
@@ -192,8 +211,9 @@ h2 {
 .hud-card strong {
   display: block;
   margin: 0.5rem 0 0.25rem;
-  color: var(--cyan);
-  font-size: clamp(1.35rem, 4vw, 2.2rem);
+  color: var(--pond);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 900;
   line-height: 1;
   word-break: break-word;
 }
@@ -212,14 +232,14 @@ h2 {
 
 .panel-title span,
 .status-dot {
-  color: var(--gold);
+  color: var(--cream);
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .status-dot.connected {
-  color: var(--cyan);
+  color: var(--leaf);
 }
 
 .status-dot.error,
@@ -230,18 +250,19 @@ h2 {
 .sparkline {
   width: 100%;
   height: 70px;
-  background: rgba(0, 0, 0, 0.16);
+  border-radius: 6px;
+  background: rgba(5, 15, 12, 0.28);
 }
 
 .sparkline path {
   fill: none;
-  stroke: var(--cyan);
+  stroke: var(--pond);
   stroke-width: 4;
   stroke-linejoin: round;
 }
 
 .sparkline line {
-  stroke: rgba(246, 211, 101, 0.2);
+  stroke: rgba(241, 230, 196, 0.2);
   stroke-dasharray: 4 6;
 }
 
@@ -269,16 +290,16 @@ h2 {
 input {
   width: 100%;
   border: 1px solid var(--line);
-  border-radius: 0;
+  border-radius: 6px;
   color: var(--ink);
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(5, 15, 12, 0.34);
   outline: 0;
   padding: 0.85rem;
 }
 
 input:focus {
-  border-color: var(--cyan);
-  box-shadow: 0 0 0 3px var(--cyan-soft);
+  border-color: var(--pond);
+  box-shadow: 0 0 0 3px var(--pond-soft);
 }
 
 .hint {
@@ -291,7 +312,8 @@ input:focus {
   display: block;
   overflow-x: auto;
   border: 1px dashed var(--line);
-  color: var(--gold);
+  border-radius: 6px;
+  color: var(--cream);
   padding: 0.75rem;
   margin-bottom: 0.75rem;
 }
@@ -313,7 +335,8 @@ input:focus {
   width: 132px;
   height: 132px;
   image-rendering: pixelated;
-  background: #dffcff;
+  border-radius: 6px;
+  background: #eef8ed;
   padding: 0.35rem;
 }
 
@@ -385,4 +408,3 @@ input:focus {
     width: 100%;
   }
 }
-
