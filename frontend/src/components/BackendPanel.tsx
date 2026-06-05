@@ -36,7 +36,7 @@ export function BackendPanel({
     QRCode.toDataURL(shareUrl, {
       margin: 1,
       scale: 6,
-      color: { dark: "#081026", light: "#dffcff" },
+      color: { dark: "#10241f", light: "#eef8ed" },
     }).then(setQrDataUrl);
   }, [shareUrl]);
 
@@ -125,4 +125,3 @@ export function BackendPanel({
     </section>
   );
 }
-

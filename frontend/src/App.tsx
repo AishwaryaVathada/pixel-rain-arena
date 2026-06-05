@@ -37,6 +37,7 @@ export default function App() {
   const groundHits = connected ? socket.state?.groundHits ?? localGroundHits : localGroundHits;
   const rainRate = connected ? socket.state?.rainRate ?? localRainRate : localRainRate;
   const mode = connected ? "live backend" : "local-only";
+  const backendSummary = connected ? "live" : socket.status === "disconnected" ? "offline" : socket.status;
 
   useEffect(() => {
     const queryUrl = getQueryWsUrl();
@@ -93,16 +94,16 @@ export default function App() {
     <main className="app-shell">
       <section className="hero">
         <div>
-          <p className="eyebrow">Evolution Arena mock / static-first demo</p>
+          <p className="eyebrow">Realtime rain garden / static-first demo</p>
           <h1>Pixel Rain Arena</h1>
-          <p className="subtitle">Touch to pause the rain. Watch latency live.</p>
+          <p className="subtitle">A soft pond of pixels, gentle rain, and live latency.</p>
         </div>
         <button type="button" className="reset-button" onClick={reset}>
-          Reset
+          Refresh Rain
         </button>
       </section>
 
-      <p className="instruction-banner">Touch and hold the rain to pause. Release to resume.</p>
+      <p className="instruction-banner">Touch and hold the water to still the rain. Release to let the garden breathe again.</p>
 
       <section className="arena-grid">
         <div className="canvas-panel">
@@ -118,12 +119,12 @@ export default function App() {
 
         <aside className="side-column">
           <section className="hud-grid">
-            <HudCard label="Drops reached ground" value={groundHits.toLocaleString()} detail="count freezes while paused" />
+            <HudCard label="Drops met the pond" value={groundHits.toLocaleString()} detail="count rests while paused" />
             <HudCard label="Rain rate" value={`${rainRate}/s`} detail="drops per second" />
-            <HudCard label="Rain state" value={effectivePaused ? "paused" : "running"} detail="touch, space, or backend control" />
-            <HudCard label="Backend" value={socket.status} detail={socket.wsUrl || "no backend required"} />
+            <HudCard label="Rain state" value={effectivePaused ? "paused" : "flowing"} detail="touch, space, or backend control" />
+            <HudCard label="Backend" value={backendSummary} detail={socket.wsUrl || "no backend required"} />
             <HudCard label="Latency" value={latestLatency === null ? "-- ms" : `${latestLatency} ms`} detail={latencyText} />
-            <HudCard label="Mode" value={mode} detail={connected ? "shared pause/count state" : "browser engine active"} />
+            <HudCard label="Mode" value={mode} detail={connected ? "shared pond state" : "browser garden active"} />
             <HudCard label="Clients" value={socket.state?.connectedClients ?? 1} detail="reported by backend when live" />
             <HudCard label="Packets/min" value={socket.packetCount} detail={`${socket.reconnectCount} reconnects`} />
           </section>
@@ -170,4 +171,3 @@ export default function App() {
     </main>
   );
 }
-
